@@ -1,0 +1,36 @@
+[comment encoding = UTF-8 /]
+[module php('http://www.eclipse.org/uml2/4.0.0/UML')]
+
+[template public generate(c : Class)]
+[comment @main/]
+[file (c.qualifiedName.path().concat('.php'), false, 'UTF-8')]
+[c.genClass()/]
+[/file]
+[/template]
+
+[template public genClass(c : Class)]
+<?php[c.genRequire()/]
+class [c.name/][c.genGeneralization()/] {
+	[c.attribute.genAttribute()/]
+}
+?>
+[/template]
+
+[template public genAttribute(p : Property)]
+[if (p.visibility <> VisibilityKind::_package )][p.visibility/][else]protected[/if] $[p.name/];
+
+[/template]
+
+[template public genGeneralization(c : Class) ?(c.generalization->notEmpty())]
+ extends [c.generalization.general->any(true).name/]
+[/template]
+
+[template public genRequire(c : Class) ? (c.generalization->notEmpty())]
+
+require_once '[c.generalization.general->any(true).qualifiedName.path().concat('.php')/]';
+
+[/template]
+
+[query public path(n : String) : String =
+	 n.replaceAll('[^:]*::(.*)', '$1').replaceAll('::', '/')
+/]
