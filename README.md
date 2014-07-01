@@ -18,8 +18,7 @@ Here is the mapping which is applied to UML in order to produce the PHP code.
 |Package|										folder (if the class is contents in the package, the PHP file will be created in the folder with the package name.)|
 |Attribute|									Attribute of PHP class|
 |Generalisation| 								Inheritance between two classes|
-
-
+|Model| main.php|
 
 ## GenMyModel Integration
 
