@@ -27,10 +27,14 @@ class [c.name/][c.genGeneralization()/] {
 
 [template public genRequire(c : Class) ? (c.generalization->notEmpty())]
 
-require_once '[c.generalization.general->any(true).qualifiedName.path().concat('.php')/]';
+require_once '[c.relativePathTo(c.generalization.general->any(true)).concat('.php')/]';
 
 [/template]
 
 [query public path(n : String) : String =
 	 n.replaceAll('[^:]*::(.*)', '$1').replaceAll('::', '/')
+/]
+
+[query public relativePathTo(src : PackageableElement, dest : PackageableElement) : String = 
+	src.getNearestPackage().qualifiedName.path().replaceAll('[^:/]+/?', '../').concat(dest.qualifiedName.path())
 /]
