@@ -8,6 +8,15 @@
 [/file]
 [/template]
 
+[template public generate(m : Model)]
+[comment @main/]
+[file ('main.php', false, 'UTF-8')]
+<?php
+	
+?>
+[/file]
+[/template]
+
 [template public genClass(c : Class)]
 <?php[c.genRequire()/]
 class [c.name/][c.genGeneralization()/] {
@@ -27,14 +36,10 @@ class [c.name/][c.genGeneralization()/] {
 
 [template public genRequire(c : Class) ? (c.generalization->notEmpty())]
 
-require_once '[c.relativePathTo(c.generalization.general->any(true)).concat('.php')/]';
+require_once '[c.generalization.general->any(true).qualifiedName.path().concat('.php')/]';
 
 [/template]
 
 [query public path(n : String) : String =
 	 n.replaceAll('[^:]*::(.*)', '$1').replaceAll('::', '/')
-/]
-
-[query public relativePathTo(src : PackageableElement, dest : PackageableElement) : String = 
-	src.getNearestPackage().qualifiedName.path().replaceAll('[^:/]+/?', '../').concat(dest.qualifiedName.path())
 /]
