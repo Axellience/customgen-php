@@ -18,8 +18,7 @@ Here is the mapping which is applied to UML in order to produce the PHP code.
 |Package|										folder (if the class is contents in the package, the PHP file will be created in the folder with the package name.)|
 |Attribute|									Attribute of PHP class|
 |Generalisation| 								Inheritance between two classes|
-
-
+|Model| main.php|
 
 ## GenMyModel Integration
 
@@ -60,8 +59,8 @@ B.php
 ```php
 <?php
 class B {
-	protected $attribute_1;
-	private $attribute_2;
+	protected $attribute_2;
+	public $attribute_3;
 	
 }
 ?>
@@ -73,7 +72,7 @@ D.php
 require_once 'folder_1/folder_2/B.php';
 
 class D extends B {
-	protected $attribute_1;
+	protected $attribute_4;
 	
 }
 ?>
@@ -85,8 +84,21 @@ E.php
 require_once 'C.php';
 
 class E extends C {
-	public $attribute_1;
+	public $attribute_5;
 	
 }
+?>
+```
+
+Main.php
+```php
+<?php
+require_once 'D.php';
+
+$D = new D();
+$D->attribute_3 = "valueOfAttribute_3 \n";
+
+echo $D->attribute_3;
+
 ?>
 ```
