@@ -24,7 +24,7 @@
 [comment @main/]
 [file ('Main.php', false, 'UTF-8')]
 <?php
-/* php n'est pas du caca */
+
 ?>
 [/file]
 [/template]
