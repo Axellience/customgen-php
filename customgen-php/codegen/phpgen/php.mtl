@@ -25,6 +25,9 @@
 [file ('Main.php', false, 'UTF-8')]
 <?php
 
+/* Generated from GenMyModel */
+
+
 ?>
 [/file]
 [/template]
@@ -35,6 +38,9 @@
 */]
 [template public genClass(c : Class)]
 <?php[c.generalization.genRequire()/]
+
+/* Generated from GenMyModel */
+
 class [c.name/][c.generalization.genGeneralization()/] {
 	[c.attribute.genAttribute()/]
 }
