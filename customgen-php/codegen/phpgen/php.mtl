@@ -28,7 +28,6 @@
 /* Generated from GenMyModel */
 
 
-?>
 [/file]
 [/template]
 
@@ -44,7 +43,6 @@
 class [c.name/][c.generalization.genGeneralization()/] {
 	[c.attribute.genAttribute()/]
 }
-?>
 [/template]
 
 [**
